@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enhanced Responsive Nav</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    nav {
+      background-color: #333;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar h2 {
+      color: white;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+
+    ul.nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    ul.nav-links li {
+      position: relative;
+    }
+
+    ul.nav-links li a {
+      text-decoration: none;
+      color: white;
+      padding: 10px 15px;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    ul.nav-links li a:hover {
+      background-color: #575757;
+      border-radius: 5px;
+    }
+
+    /* Dropdown */
+    ul.nav-links li ul {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #444;
+      display: none;
+      flex-direction: column;
+      min-width: 160px;
+      border-radius: 5px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    ul.nav-links li:hover ul {
+      display: flex;
+    }
+
+    ul.nav-links li ul li a {
+      padding: 10px 15px;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      ul.nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        background-color: #333;
+      }
+
+      ul.nav-links.active {
+        display: flex;
+      }
+
+      ul.nav-links li {
+        width: 100%;
+      }
+
+      ul.nav-links li ul {
+        position: static;
+        display: none;
+      }
+
+      ul.nav-links li:hover ul {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="navbar">
+      <h2><i class="fas fa-gem"></i> Brand</h2>
+      <div class="menu-toggle" onclick="toggleMenu(this)">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+        <li>
+          <a href="#"><i class="fas fa-cogs"></i> Services</a>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">SEO</a></li>
+            <li><a href="#">Marketing</a></li>
+          </ul>
+        </li>
+        <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <script>
+    function toggleMenu(toggleBtn) {
+      const nav = document.getElementById("nav-links");
+      nav.classList.toggle("active");
+      toggleBtn.classList.toggle("open");
+    }
+  </script>
+</body>
+</html>
+
